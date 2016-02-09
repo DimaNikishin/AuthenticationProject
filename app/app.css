@@ -24,11 +24,11 @@ input::-webkit-input-placeholder {
 }
 
 .form-input input {
-    margin-top: 25px;!important;
+    margin-top: 20px;!important;
 }
 
 .form-actions{
-    margin-top: 25px;!important;
+    margin-top: 20px;!important;
     text-align: center;
 }
 
@@ -43,12 +43,13 @@ input::-webkit-input-placeholder {
 
 .additional-block {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 .additional-block p {
     line-height: 1.0;
     font-size: 13px;
+    margin-bottom: 5px;!important;
 }
 
 .btn-load {
