@@ -8,7 +8,9 @@ describe('myApp module', function() {
     route = $route;
   }));
 
-
+  /**
+   * @description unit-test for testing project routes and it's controllers and templateUrls
+   */
   describe('app route functions', function(){
 
     it('should ....', inject(function() {

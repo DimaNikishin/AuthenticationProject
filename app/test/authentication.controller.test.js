@@ -19,6 +19,9 @@ describe('myApp.index controller', function() {
     httpBackend = $httpBackend;
   }));
 
+  /**
+   * @description unit-test verify that authentication controller is defined
+   */
   describe('authentication controller', function(){
 
     it('should not be undefined', inject(function() {
@@ -27,6 +30,9 @@ describe('myApp.index controller', function() {
 
   });
 
+  /**
+   * @description unit-test verify that Activate function started after controller was defined
+   */
   describe('authentication controller', function(){
 
     it('Activate function should setup HTML Markup', inject(function() {
@@ -37,10 +43,13 @@ describe('myApp.index controller', function() {
 
   });
 
+  /**
+   * @description unit-test verify that Login function changed HTML markup and add 'failed-login' class to 'Login' input after { "Auth": "Denied" } response is received from the server
+   */
   describe('authentication controller Login function' , function(){
 
     it('Authentication is denied', inject(function() {
-      var returnData = { "Auth": "Denied" };
+      var returnData = {"Auth": "Denied"};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.Login();
@@ -55,10 +64,13 @@ describe('myApp.index controller', function() {
 
   });
 
+  /**
+   * @description unit-test verify that Login function navigate user to '/logged' route after { "Auth": "Logged","Theme": "Simple","Language": "EN" } response is received from the server
+   */
   describe('authentication controller Login function' , function(){
 
     it('Authentication is accepted', inject(function($location) {
-      var returnData = { "Auth": "Logged","Theme": "Simple","Language": "EN" };
+      var returnData = {"Auth": "Logged","Theme": "Simple","Language": "EN"};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.Login();
@@ -69,10 +81,13 @@ describe('myApp.index controller', function() {
 
   });
 
+  /**
+   * @description unit-test verify that Login function temporarily disable 'Login' button after { "Auth": "Banned","Time": 300 } response is received from the server
+   */
   describe('authentication controller Login function' , function(){
 
     it('Authentication is banned', inject(function($timeout) {
-      var returnData = { "Auth": "Banned","Time": 300 };
+      var returnData = {"Auth": "Banned","Time": 300};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.Login();
@@ -85,10 +100,14 @@ describe('myApp.index controller', function() {
 
   });
 
+
+  /**
+   * @description unit-test verify that Login function changed HTML markup and display second submit form after { "Auth": "HOTP required" } response is received from the server
+   */
   describe('authentication controller Login function' , function(){
 
     it('HOTP code is required for authentication', inject(function() {
-      var returnData = { "Auth": "HOTP required" };
+      var returnData = {"Auth": "HOTP required"};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.Login();
@@ -101,10 +120,14 @@ describe('myApp.index controller', function() {
 
   });
 
+
+  /**
+   * @description unit-test verify that SecondLoginStep function navigate user to '/authentication' route after {"Auth": "HOTP wrong code"} response is received from the server
+   */
   describe('authentication controller SecondLoginStep function' , function(){
 
     it('Authentication is denied, HOTP wrong code', inject(function($location) {
-      var returnData = {  "Auth": "HOTP wrong code" };
+      var returnData = {"Auth": "HOTP wrong code"};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.SecondLoginStep();
@@ -115,10 +138,13 @@ describe('myApp.index controller', function() {
 
   });
 
+  /**
+   * @description unit-test verify that SecondLoginStep function navigate user to '/logged' route after { "Auth": "Logged","Theme": "Simple","Language": "EN" } response is received from the server
+   */
   describe('authentication controller SecondLoginStep function' , function(){
 
     it('Authentication is accepted, HOTP code is correct', inject(function($location) {
-      var returnData = { "Auth": "Logged","Theme": "Simple","Language": "EN" };
+      var returnData = {"Auth": "Logged","Theme": "Simple","Language": "EN"};
       httpBackend.when('POST', 'https://93.183.203.13:10443/login').respond(returnData);
 
       scope.authentication.SecondLoginStep();
