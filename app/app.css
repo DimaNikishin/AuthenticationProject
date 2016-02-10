@@ -83,6 +83,7 @@ input::-webkit-input-placeholder {
     text-align: center;
     margin-top: 28px;
     margin-bottom: 0px;!important;
+    height: 30px;!important;
 }
 
 .btn-continue {
