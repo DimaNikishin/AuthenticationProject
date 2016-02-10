@@ -5,6 +5,8 @@
    * @memberof myApp.authentication
    * @ngdoc controller
    * @name authenticationController
+   * @description myApp.authentication module's main functional: private Activate,_setupHTMLMarkup functions and public Login, SecondLoginStep functions
+   * @dependency $scope, authenticationService factory, $location service, $timeout service
    */
 
   angular
@@ -24,10 +26,20 @@
 
     Activate();
 
+    /**
+     * @function Activate
+     * @description Activate private function resolve start-up logic for a controller - setup default HTML markup
+     */
     function Activate(){
       _setupHTMLMarkup(false,true,false);
     }
 
+    /**
+     * @function Login
+     * @description Login public function use authenticationService and make POST request to server with user's login data (Login,Password)
+     *              and make appropriate operations depends on server response
+     * @param data - object with user's credentials
+     */
     function Login(data){
       that.resultClass = '';
       authenticationService.login(angular.toJson(data)).success(function(data, status) {
@@ -50,6 +62,12 @@
       })
     }
 
+    /**
+     * @function SecondLoginStep
+     * @description SecondLoginStep public function use authenticationService and make POST request to server when HOTP code is required with user's login data (Login,Password, HOTP)
+     *              and make appropriate operations depends on server response (second Google 2-Step Verification step)
+     * @param data - object with user's credentials
+     */
     function SecondLoginStep(data){
       authenticationService.login(angular.toJson(data)).success(function(data, status) {
         if(data["Auth"] == "HOTP wrong code"){
@@ -61,6 +79,13 @@
       })
     }
 
+    /**
+     * @function _setupHTMLMarkup
+     * @description _setupHTMLMarkup private function which change HTML Markup
+     * @param FirstSubmitStepInput boolean which hides first submit step form
+     * @param SecondSubmitStepInput boolean which hides second submit step form
+     * @param AdditionalBlock boolean which hides additional information block
+     */
     function _setupHTMLMarkup(FirstSubmitStepInput,SecondSubmitStepInput,AdditionalBlock){
       that.markup.FirstSubmitStepInput = FirstSubmitStepInput;
       that.markup.SecondSubmitStepInput = SecondSubmitStepInput;

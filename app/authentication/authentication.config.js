@@ -4,6 +4,8 @@
   /**
    * @memberof myApp.authentication
    * @ngdoc config
+   * @description Setup myApp.authentication module's route properties: templateUrl,controller,controllerAs, path
+   * @dependency $routeProvider
    */
 
   angular

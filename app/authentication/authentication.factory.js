@@ -5,6 +5,8 @@
    * @memberof myApp.authentication
    * @ngdoc factory
    * @name authenticationService
+   * @description myApp.authentication module's factory which return object with POST request to server
+   * @dependency $http service
    */
 
   angular

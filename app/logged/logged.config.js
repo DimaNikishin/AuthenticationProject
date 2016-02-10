@@ -4,6 +4,8 @@
   /**
    * @memberof myApp.authentication
    * @ngdoc config
+   * @description Setup myApp.logged module's route properties: templateUrl, path
+   * @dependency $routeProvider
    */
 
   angular
