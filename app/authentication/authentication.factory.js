@@ -21,10 +21,7 @@
     return service;
 
     function login(data){
-      $http.post("https://93.183.203.13:10443/login", data).success(function(data, status) {
-        console.log(data);
-        console.log(111);
-      })
+      return $http.post("https://93.183.203.13:10443/login", data);
     }
   }
 })();
